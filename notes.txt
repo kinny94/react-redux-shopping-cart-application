@@ -1,0 +1,17 @@
+Redux - redux is a state container where you can store your application state.
+A React-Redux state is maintained by 5 components.
+    - Store
+    - Provider
+    - Actions
+    - Reducers
+    - Middlewares ( Optional )
+
+React
+    Smart Components - ( Containers ) - which access the application state. 
+    Dumb Components - ( Presentational Components ) - no relation with redux store. we dont get or set any state from the store.
+
+Actions are just functions holding payloads of information the reducers needs to update the state in the store.
+Middlewares are optionaln, in the sense that you dont necessary need to use a Middlewares in every scenario.
+Reducers have the task to replace the current state in the store with the new state.
+
+Store -> Provider -> Actions -> Middlewares ( optional ) -> Reducers 

@@ -1,0 +1,31 @@
+{
+	"name": "shopping-cart",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kinny94/react-redux-shopping-cart-application.git"
+	},
+	"author": "Arjun Dass",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/kinny94/react-redux-shopping-cart-application/issues"
+	},
+	"homepage": "https://github.com/kinny94/react-redux-shopping-cart-application#readme",
+	"devDependencies": {
+		"webpack": "^4.8.1",
+		"webpack-cli": "^2.1.3"
+	},
+	"dependencies": {
+		"babel-core": "^6.26.3",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-react": "^6.24.1",
+		"babel-preset-stage-1": "^6.24.1",
+		"express": "^4.16.3",
+		"redux": "^4.0.0"
+	}
+}
