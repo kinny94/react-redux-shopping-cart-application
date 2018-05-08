@@ -19,3 +19,7 @@ Store -> Provider -> Actions -> Middlewares ( optional ) -> Reducers
 In redux, you should never mutate the state. Therefore always use concat instead of push in case of an array.
 
 PURE FUNCTIONS - Redux relies on pure functions for preventing the state mutations
+Redux is based on three principal.
+    1 - Single Source of truth -> The state of yout whoile applciation is stored in an object tree within a single store.
+    2 - State is read-only -> The only way to change the state is to emit an action.
+    3 - Changes are made with pure functions -> Reducers must be pure functions.
