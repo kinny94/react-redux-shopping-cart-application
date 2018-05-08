@@ -15,3 +15,7 @@ Middlewares are optionaln, in the sense that you dont necessary need to use a Mi
 Reducers have the task to replace the current state in the store with the new state.
 
 Store -> Provider -> Actions -> Middlewares ( optional ) -> Reducers 
+
+In redux, you should never mutate the state. Therefore always use concat instead of push in case of an array.
+
+PURE FUNCTIONS - Redux relies on pure functions for preventing the state mutations
