@@ -13,9 +13,9 @@ const store = createStore(reducers, composeWithDevTools(
     applyMiddleware( logger ),
 ));
 
-store.subscribe(() => {
-    console.log( 'current state is: ',  store.getState());
-});
+// store.subscribe(() => {
+//     console.log( 'current state is: ',  store.getState());
+// });
 
 // Step 2 - Create and dispatch the actions
 store.dispatch( postBook(
