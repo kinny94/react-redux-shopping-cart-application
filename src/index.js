@@ -1,6 +1,8 @@
 import { createStore } from 'redux';
 
 import reducers from './reducers/index';
+import { addToCart } from './actions/cartActions';
+import { postBook, updateBook, deleteBook } from './actions/booksActions';
 
 //Step 3 - define the reducers
 
@@ -11,9 +13,8 @@ store.subscribe(() => {
 });
 
 // Step 2 - Create and dispatch the actions
-store.dispatch({
-    type: "POST_BOOK",
-    payload: [
+store.dispatch( postBook(
+    [
         {
             id: 1,
             title: " This is the title of a Book",
@@ -27,34 +28,23 @@ store.dispatch({
             price: 32
         }
     ]
-}); 
-
-// Dispatch a second action - Update Operation
-store.dispatch({
-    type: "POST_BOOK",
-    payload: 
-    [   {
-            id: 3,
-            title: " This is the title of the third Book",
-            description: "This is some description about the third book!!",
-            price: 60
-        }
-    ]
-});
+) );
 
 //Delete a book
-store.dispatch({
-    type: "DELETE_BOOK",
-    payload:{
+store.dispatch( deleteBook(
+    {
         id: 2
     }
-});
+) );
 
-//Update a book
-store.dispatch({
-    type: "UPDATE_BOOK",
-    payload:{
+//update a book
+store.dispatch( updateBook(
+    {
         id: 3,
         title: 'This is the new title provided by the update action!' 
     }
-})
+));
+
+// Cart actions
+// Add to cart
+store.dispatch( addToCart( [{ id: 1}] ) );
