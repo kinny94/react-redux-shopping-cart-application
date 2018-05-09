@@ -1,50 +1,11 @@
 import { createStore } from 'redux';
 
+import reducers from './reducers/index';
+
 //Step 3 - define the reducers
-const reducer = ( state = { books:[] }, action ) => {
-    switch( action.type ){
-
-        case "POST_BOOK":
-            let books = state.books.concat( action.payload );
-            return { books };
-            break;
-        
-        case "DELETE_BOOK":
-            const currentBookToDelete = [ ...state.books ];
-            const indexToDelete = currentBookToDelete.findIndex(( book ) => {
-                return book.id === action.payload.id;
-            }); 
-            return { 
-                books: [
-                    ...currentBookToDelete.slice(0, indexToDelete), 
-                    ...currentBookToDelete.slice( indexToDelete + 1 )
-                ]
-            }
-            break;
-
-        case "UPDATE_BOOK": 
-            const currentBookToUpdate = [ ...state.books ];
-            const indexToUpdate = currentBookToUpdate.findIndex(( book ) => {
-                return book.id === action.payload.id
-            });
-            const newBookToUpdate = {
-                ...currentBookToUpdate[ indexToUpdate ],
-                title: action.payload.title
-            }
-            console.log( newBookToUpdate );
-            return {
-                books: [
-                    ...currentBookToUpdate.slice( indexToUpdate + 1 )
-                ]
-            };
-            break;
-    }
-
-    return state;
-}
 
 // Step 1 - create the store
-const store = createStore( reducer );
+const store = createStore( reducers );
 store.subscribe(() => {
     console.log( 'current state is: ',  store.getState());
 });
@@ -85,17 +46,15 @@ store.dispatch({
 store.dispatch({
     type: "DELETE_BOOK",
     payload:{
-        id: 3
+        id: 2
     }
 });
 
 //Update a book
 store.dispatch({
     type: "UPDATE_BOOK",
-    payload: {
-        payload:{
-            id: 2,
-            title: 'This is the new title provided by the update action!' 
-        }
+    payload:{
+        id: 3,
+        title: 'This is the new title provided by the update action!' 
     }
 })
