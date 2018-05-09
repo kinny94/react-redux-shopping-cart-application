@@ -1,4 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import logger from 'redux-logger';
 
 import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
@@ -7,7 +9,10 @@ import { postBook, updateBook, deleteBook } from './actions/booksActions';
 //Step 3 - define the reducers
 
 // Step 1 - create the store
-const store = createStore( reducers );
+const store = createStore(reducers, composeWithDevTools(
+    applyMiddleware( logger ),
+));
+
 store.subscribe(() => {
     console.log( 'current state is: ',  store.getState());
 });

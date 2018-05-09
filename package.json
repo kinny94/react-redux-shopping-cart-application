@@ -19,6 +19,8 @@
 	},
 	"homepage": "https://github.com/kinny94/react-redux-shopping-cart-application#readme",
 	"devDependencies": {
+		"redux-devtools-extension": "^2.13.2",
+		"redux-logger": "^3.0.6",
 		"webpack": "^4.8.1",
 		"webpack-cli": "^2.1.3"
 	},
