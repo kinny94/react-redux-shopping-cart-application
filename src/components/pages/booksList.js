@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
+
 import { getBook } from '../../actions/booksActions';
 class BookList extends Component{
 
@@ -18,7 +20,8 @@ class BookList extends Component{
                     <div key={ book.id }>
                         <h2>{ book.id }</h2>
                         <h2>{ book.title }</h2>
-                        <h3>{ book.description }</h3>
+                        <h2>{ book.description }</h2>
+                        <Button bsStyle="primary">Buy now</Button>
                     </div>
                 )
             })
@@ -27,9 +30,11 @@ class BookList extends Component{
 
     render(){
         return(
-            <div>
-                { this.renderBooks() }
-            </div>
+            <Grid>
+                <Row style={{ marginTop: '15px'}}>
+                    { this.renderBooks() }
+                </Row>
+            </Grid>
         )
     }
 }
