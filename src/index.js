@@ -4,6 +4,7 @@ import logger from 'redux-logger';
 import React from 'react';
 import { render } from 'react-dom'; 
 import { Provider } from 'react-redux';
+import 'bootstrap';
 
 import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
@@ -19,7 +20,9 @@ const store = createStore(reducers, composeWithDevTools(
 import BookList from './components/pages/booksList';
 render(
     <Provider store={ store }>
-        <BookList />
+        <div className="container">
+            <BookList />
+        </div>
     </Provider>,
     document.getElementById('app')
 )
