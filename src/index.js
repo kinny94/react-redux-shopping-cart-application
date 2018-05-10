@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import React from 'react';
 import { render } from 'react-dom'; 
+import { Provider } from 'react-redux';
 
 import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
@@ -21,7 +22,9 @@ const store = createStore(reducers, composeWithDevTools(
 
 import BookList from './components/pages/booksList';
 render(
-    <BookList />,
+    <Provider store={ store }>
+        <BookList />
+    </Provider>,
     document.getElementById('app')
 )
 
