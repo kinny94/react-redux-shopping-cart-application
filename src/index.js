@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
+import React from 'react';
+import { render } from 'react-dom'; 
 
 import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
@@ -16,6 +18,12 @@ const store = createStore(reducers, composeWithDevTools(
 // store.subscribe(() => {
 //     console.log( 'current state is: ',  store.getState());
 // });
+
+import BookList from './components/pages/booksList';
+render(
+    <BookList />,
+    document.getElementById('app')
+)
 
 // Step 2 - Create and dispatch the actions
 store.dispatch( postBook(
