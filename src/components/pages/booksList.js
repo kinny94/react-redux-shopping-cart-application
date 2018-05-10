@@ -3,22 +3,27 @@ import { connect } from 'react-redux';
 
 class BookList extends Component{
 
+    renderBooks = () => {
+        if( this.props.books.length === 0 ){
+            console.log( this.props.books );
+            return <p>Getting books...</p>
+        }else{
+            return this.props.books.map(( book ) => {
+                return (
+                    <div key={ book.id }>
+                        <h2>{ book.id }</h2>
+                        <h2>{ book.title }</h2>
+                        <h3>{ book.description }</h3>
+                    </div>
+                )
+            })
+        }
+    }
+
     render(){
-
-        console.log( "Hello " + this.props.books );
-        const bookList = this.props.books.map(( book ) => {
-            return (
-                <div key={ book.id }>
-                    <h2>{ book.title }</h2>
-                    <h2>{ book.description }</h2>
-                    <h3>{ book.price }</h3>
-                </div>
-            )
-        });
-
         return(
             <div>
-                { bookList }
+                { this.renderBooks() }
             </div>
         )
     }

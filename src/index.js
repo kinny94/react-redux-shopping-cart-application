@@ -16,10 +16,6 @@ const store = createStore(reducers, composeWithDevTools(
     applyMiddleware( logger ),
 ));
 
-// store.subscribe(() => {
-//     console.log( 'current state is: ',  store.getState());
-// });
-
 import BookList from './components/pages/booksList';
 render(
     <Provider store={ store }>
