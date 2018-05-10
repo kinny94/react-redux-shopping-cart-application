@@ -25,38 +25,25 @@ render(
 )
 
 // Step 2 - Create and dispatch the actions
-store.dispatch( postBook(
-    [
-        {
-            id: 1,
-            title: " This is the title of a Book",
-            description: "This is some description about the book!!",
-            price: 40
-        },
-        {
-            id: 2,
-            title: " This is the title of the second Book",
-            description: "This is some description about the second book!!",
-            price: 32
-        }
-    ]
-) );
+// store.dispatch( postBook(
+    
+// ) );
 
-//Delete a book
-store.dispatch( deleteBook(
-    {
-        id: 2
-    }
-) );
+// //Delete a book
+// store.dispatch( deleteBook(
+//     {
+//         id: 2
+//     }
+// ) );
 
-//update a book
-store.dispatch( updateBook(
-    {
-        id: 3,
-        title: 'This is the new title provided by the update action!' 
-    }
-));
+// //update a book
+// store.dispatch( updateBook(
+//     {
+//         id: 3,
+//         title: 'This is the new title provided by the update action!' 
+//     }
+// ));
 
-// Cart actions
-// Add to cart
-store.dispatch( addToCart( [{ id: 1}] ) );
+// // Cart actions
+// // Add to cart
+// store.dispatch( addToCart( [{ id: 1}] ) );

@@ -1,6 +1,25 @@
 
-export function booksReducers( state = { books:[] }, action ){
+export function booksReducers( state = {  books: [
+        {
+            id: 1,
+            title: " This is the title of a Book",
+            description: "This is some description about the book!!",
+            price: 40
+        },
+        {
+            id: 2,
+            title: " This is the title of the second Book",
+            description: "This is some description about the second book!!",
+            price: 32
+        }
+    ] }, action ){
     switch( action.type ){
+
+        case "GET_BOOKS":
+        
+            return {
+                ...state, books: [...state.books]
+            }
 
         case "POST_BOOK":
             let books = state.books.concat( action.payload );
