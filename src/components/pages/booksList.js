@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 import { getBook } from '../../actions/booksActions';
+import Cart from './cart';
 
 import BookItem from './bookItem';
 import BookForm from './bookForm';
@@ -31,6 +32,9 @@ class BookList extends Component{
     render(){
         return(
             <Grid>
+                <div className="Row">
+                    <Cart />
+                </div>
                 <Row style={{ marginTop: '15px'}}>
                     <div className="col-12 col-sm-6">
                         <BookForm />

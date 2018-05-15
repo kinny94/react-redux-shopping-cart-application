@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-native';
+import { connect } from 'react-redux';
 
 class Cart extends Component{
 
     renderEmpty = () => {
         return(
-            <div>
-
-            </div>
+            <div></div>
         )
     }
 
@@ -17,16 +15,26 @@ class Cart extends Component{
             return(
                 <div key={ cartElement.id }>
                     <div className="row">
-                        <div className="col-12 col-sm-4">
-                            <h6>{ cartElement.title }</h6>
+                        <div className="card w-100 p-3">
+                        <div className="card-header">
+                            <h3 className="mb-0">{ cartElement.title }</h3>
+                        </div>
+                            <div className="card-body">
+                                { cartElement.description }
+                            </div>
                         </div>
                     </div>
                 </div>
             )
         })
         return(
-            <div className="card">
-                { cartItemsList }
+            <div className="card card-outline-secondary">
+                <div className="card-header">
+                    <h3 className="mb-0">Cart</h3>
+                </div>
+                <div className="card-body">
+                    { cartItemsList }
+                </div>
             </div>
         )
     }
@@ -48,4 +56,4 @@ function mapStateToProps( state ){
     }
 }
 
-export default (connect)( mapStateToProps )( Cart );
+export default connect( mapStateToProps )( Cart );
