@@ -13,14 +13,29 @@ class Cart extends Component{
 
         const cartItemsList = this.props.cart.map(( cartElement ) => {
             return(
-                <div key={ cartElement.id }>
+                <div key={ cartElement._id }>
                     <div className="row">
                         <div className="card w-100 p-3">
-                        <div className="card-header">
-                            <h3 className="mb-0">{ cartElement.title }</h3>
-                        </div>
                             <div className="card-body">
-                                { cartElement.description }
+                                <div className="row">
+                                    <div className="col-4">
+                                        <h6>{ cartElement.title }</h6>
+                                    </div>
+                                    <div className="col-2">
+                                        <h6>${ cartElement.price }</h6>
+                                    </div>
+                                    <div className="col-2">
+                                        <h6>qty <label className="success"></label></h6>
+                                    </div>
+                                    <div className="col-4">
+                                        <div class="btn-group cart-button" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-default btn-sm">-</button>
+                                            <button type="button" class="btn btn-default btn-sm">+</button>
+                                            <span>      </span>
+                                            <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -29,7 +44,7 @@ class Cart extends Component{
         })
         return(
             <div className="card card-outline-secondary">
-                <div className="card-header">
+                <div className="card-header success">
                     <h3 className="mb-0">Cart</h3>
                 </div>
                 <div className="card-body">

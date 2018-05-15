@@ -119,3 +119,7 @@ h5 {
 .meta a:hover {
     color: rgba(0, 0, 0, .87);
 }
+
+.cart-button{
+    min-width: 300px;
+}
