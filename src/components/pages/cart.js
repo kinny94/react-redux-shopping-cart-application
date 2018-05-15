@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Modal, Button } from 'react-bootstrap';
 
 import { deleteCartItem, updateCart } from '../../actions/cartActions';
 
@@ -19,6 +20,25 @@ class Cart extends Component{
                 ...currentBookToDelete.slice( indexToDelete + 1 )
             ]
         this.props.deleteCartItem( cartAfterDelete );
+    }
+
+    constructor(){
+        super();
+        this.state = {
+            showModal: false
+        }
+    }
+
+    open(){
+        this.setState({
+            showModal: true
+        })
+    }
+
+    close(){
+        this.setState({
+            showModal: false
+        })
     }
 
     onIncrement( _id ){
@@ -77,8 +97,30 @@ class Cart extends Component{
                 </div>
                 <div className="card-body">
                     { cartItemsList }
+                    <div className="row">
+                        <div className="col-12 checkout-button">
+                            <h6>Total Amount: </h6>
+                            <button onClick={ this.open.bind( this ) } className="btn btn-sm btn-success">Checkout</button>
+                        </div>
+                    </div>
                 </div>
+                <Modal show={ this.state.showModal } onHide={ this.close.bind( this ) }>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Thank you!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h6>Your order has been saved!</h6>
+                        <p>You will receive an email confirmation.</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <div className="col-6">
+                            <h6>Total $: </h6>
+                        </div>
+                        <Button onClick={ this.close.bind( this ) }>Close</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
+
         )
     }
 

@@ -123,3 +123,7 @@ h5 {
 .cart-button{
     min-width: 300px;
 }
+
+.checkout-button{
+    margin-top: 5%;
+}
