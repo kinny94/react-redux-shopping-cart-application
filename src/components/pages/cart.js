@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { deleteCartItem } from '../../actions/cartActions';
 
 class Cart extends Component{
+
+    onDelete( _id ){
+
+        console.log( "Clicked!!");
+        const currentBookToDelete = this.props.cart;
+
+        const indexToDelete = currentBookToDelete.findIndex(( cart ) => {
+            return cart._id === _id;
+        }); 
+
+        let cartAfterDelete = [ 
+                ...currentBookToDelete.slice( 0, indexToDelete ), 
+                ...currentBookToDelete.slice( indexToDelete + 1 )
+            ]
+        this.props.deleteCartItem( cartAfterDelete );
+    }
 
     renderEmpty = () => {
         return(
@@ -32,7 +51,7 @@ class Cart extends Component{
                                             <button type="button" class="btn btn-default btn-sm">-</button>
                                             <button type="button" class="btn btn-default btn-sm">+</button>
                                             <span>      </span>
-                                            <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                                            <button onClick={ this.onDelete.bind( this, cartElement._id )} type="button" className="btn btn-danger btn-sm">Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +60,7 @@ class Cart extends Component{
                     </div>
                 </div>
             )
-        })
+        }, this)
         return(
             <div className="card card-outline-secondary">
                 <div className="card-header success">
@@ -71,4 +90,10 @@ function mapStateToProps( state ){
     }
 }
 
-export default connect( mapStateToProps )( Cart );
+function mapDispatchToProps( dispatch ){
+    return bindActionCreators({
+            deleteCartItem: deleteCartItem
+        }, dispatch )
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( Cart );

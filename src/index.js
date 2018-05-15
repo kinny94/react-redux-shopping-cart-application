@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger';
+//import logger from 'redux-logger';
 import React from 'react';
 import { render } from 'react-dom'; 
 import { Provider } from 'react-redux';
@@ -14,7 +14,7 @@ import { postBook, updateBook, deleteBook } from './actions/booksActions';
 
 // Step 1 - create the store
 const store = createStore(reducers, composeWithDevTools(
-    applyMiddleware( logger ),
+    applyMiddleware( ),
 ));
 
 import BookList from './components/pages/booksList';
