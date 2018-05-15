@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { deleteCartItem } from '../../actions/cartActions';
+import { deleteCartItem, updateCart } from '../../actions/cartActions';
 
 class Cart extends Component{
 
     onDelete( _id ){
 
-        console.log( "Clicked!!");
         const currentBookToDelete = this.props.cart;
 
         const indexToDelete = currentBookToDelete.findIndex(( cart ) => {
@@ -20,6 +19,16 @@ class Cart extends Component{
                 ...currentBookToDelete.slice( indexToDelete + 1 )
             ]
         this.props.deleteCartItem( cartAfterDelete );
+    }
+
+    onIncrement( _id ){
+        this.props.updateCart( _id, 1 );
+    }
+
+    onDecrement( _id, quantity ){
+        if( quantity > 1 ){
+            this.props.updateCart( _id, -1 );
+        }
     }
 
     renderEmpty = () => {
@@ -44,12 +53,12 @@ class Cart extends Component{
                                         <h6>${ cartElement.price }</h6>
                                     </div>
                                     <div className="col-2">
-                                        <h6>qty <label className="success"></label></h6>
+                                        <h6>qty <span class="badge badge-success">{ cartElement.quantity }</span></h6>
                                     </div>
                                     <div className="col-4">
                                         <div class="btn-group cart-button" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-default btn-sm">-</button>
-                                            <button type="button" class="btn btn-default btn-sm">+</button>
+                                            <button onClick={ this.onDecrement.bind( this, cartElement._id, cartElement.quantity )} type="button" class="btn btn-default btn-sm">-</button>
+                                            <button onClick={ this.onIncrement.bind( this, cartElement._id ) } type="button" class="btn btn-default btn-sm">+</button>
                                             <span>      </span>
                                             <button onClick={ this.onDelete.bind( this, cartElement._id )} type="button" className="btn btn-danger btn-sm">Delete</button>
                                         </div>
@@ -92,7 +101,8 @@ function mapStateToProps( state ){
 
 function mapDispatchToProps( dispatch ){
     return bindActionCreators({
-            deleteCartItem: deleteCartItem
+            deleteCartItem: deleteCartItem,
+            updateCart: updateCart
         }, dispatch )
 }
 
