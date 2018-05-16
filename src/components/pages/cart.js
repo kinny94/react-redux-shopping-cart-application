@@ -99,7 +99,7 @@ class Cart extends Component{
                     { cartItemsList }
                     <div className="row">
                         <div className="col-12 checkout-button">
-                            <h6>Total Amount: </h6>
+                            <h6>Total Amount: ${ this.props.totalAmount }</h6>
                             <button data-toggle="modal" data-target="#exampleModal" className="btn btn-sm btn-success">Checkout</button>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ class Cart extends Component{
                             </div>
                             <div className="modal-footer">
                                 <div className="col-6">
-                                    <h6>Total : $</h6>
+                                    <h6>Total : ${ this.props.totalAmount }</h6>
                                 </div>
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="button" className="btn btn-primary">Save changes</button>
@@ -145,7 +145,8 @@ class Cart extends Component{
 
 function mapStateToProps( state ){
     return {
-        cart: state.cart.cart
+        cart: state.cart.cart,
+        totalAmount: state.cart.totalAmount
     }
 }
 

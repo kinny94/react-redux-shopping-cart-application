@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-import { postBook } from '../../actions/booksActions';
+import { postBook, deleteBook } from '../../actions/booksActions';
 
 class BookForm extends Component{
 
@@ -10,7 +10,6 @@ class BookForm extends Component{
 
         event.preventDefault();
 
-        console.log(  );
         const book = [{
             title: event.target.elements.title.value,
             description: event.target.elements.description.value,
@@ -19,7 +18,21 @@ class BookForm extends Component{
         this.props.postBook( book );     
     }
 
+    onDelete = ( event ) => {
+
+        event.preventDefault();
+
+        let bookId = findDOMNode( this.refs.delete ).value;
+        this.props.deleteBook( bookId );
+    }
+
     render(){
+
+        const bookList = this.props.books.map(( booksArr ) => {
+            return(
+                <option key={ booksArr._id }>{ booksArr._id }</option>
+            )
+        })
         
         return (
             <div>
@@ -64,14 +77,37 @@ class BookForm extends Component{
                             </form>
                         </div>
                     </div>
+                    <div className="bookform card card-outline-secondary">
+                        <div className="card-header">
+                            <h3 className="mb-0">More options</h3>
+                        </div>
+                        <div className="card-body">
+                            <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Select a book to delete..</label>
+                                    <select name="delete" id="delete" ref="delete" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="select">select</option>
+                                        { bookList }
+                                    </select>
+                                </div>
+                            </form>
+                            <button onClick={ this.onDelete } className="btn btn-danger btn-sm">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-function mapDispatchToProps( dispatch ){
-    return bindActionCreators( {postBook }, dispatch )
+function mapStateToProps( state ){
+    return{
+        books: state.books.books
+    }
 }
 
-export default connect( null, mapDispatchToProps )( BookForm );
+function mapDispatchToProps( dispatch ){
+    return bindActionCreators( { postBook, deleteBook }, dispatch )
+}
+
+export default connect( mapStateToProps, mapDispatchToProps )( BookForm );
