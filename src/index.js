@@ -18,10 +18,17 @@ const store = createStore(reducers, composeWithDevTools(
 ));
 
 import BookList from './components/pages/booksList';
+import Menu from './components/menu';
+
 render(
     <Provider store={ store }>
-        <div className="container">
-            <BookList />
+        <div>
+            <div>
+                <Menu />
+            </div>
+            <div className="container">
+                <BookList />
+            </div>
         </div>
     </Provider>,
     document.getElementById('app')
