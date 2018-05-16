@@ -23,3 +23,12 @@ Redux is based on three principal.
     1 - Single Source of truth -> The state of yout whoile applciation is stored in an object tree within a single store.
     2 - State is read-only -> The only way to change the state is to emit an action.
     3 - Changes are made with pure functions -> Reducers must be pure functions.
+
+React-Router
+Important notes about react-routers
+* Router - Router methods wraps all our react app and register the internal root.
+* Route - Allows us to define roots and respective component through render.
+* IndexRoute - It allows us to define which component should be render first when our component is rendered.
+* BrowserHistory - It tracks and list all internal Urls.
+* HashHistory - It tracks and list all internal Urls. HashHistory does it indenpendently of the roots set in our server. It is able
+to do that because of the # sign in the url. Its not good for production.
