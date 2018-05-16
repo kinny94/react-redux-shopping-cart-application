@@ -19,16 +19,16 @@ const store = createStore(reducers, composeWithDevTools(
 
 import BookList from './components/pages/booksList';
 import Menu from './components/menu';
+import Footer from './components/footer';
 
 render(
     <Provider store={ store }>
         <div>
-            <div>
-                <Menu />
-            </div>
+            <Menu />
             <div className="container">
                 <BookList />
             </div>
+            <Footer />
         </div>
     </Provider>,
     document.getElementById('app')
