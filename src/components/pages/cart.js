@@ -100,25 +100,33 @@ class Cart extends Component{
                     <div className="row">
                         <div className="col-12 checkout-button">
                             <h6>Total Amount: </h6>
-                            <button onClick={ this.open.bind( this ) } className="btn btn-sm btn-success">Checkout</button>
+                            <button data-toggle="modal" data-target="#exampleModal" className="btn btn-sm btn-success">Checkout</button>
                         </div>
                     </div>
                 </div>
-                <Modal show={ this.state.showModal } onHide={ this.close.bind( this ) }>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Thank you!</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h6>Your order has been saved!</h6>
-                        <p>You will receive an email confirmation.</p>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <div className="col-6">
-                            <h6>Total $: </h6>
+                <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="exampleModalLabel">Thank you!!</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <h6>You order has been saved!</h6>
+                                <p>You will receive an email confirmation.</p>
+                            </div>
+                            <div className="modal-footer">
+                                <div className="col-6">
+                                    <h6>Total : $</h6>
+                                </div>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
-                        <Button onClick={ this.close.bind( this ) }>Close</Button>
-                    </Modal.Footer>
-                </Modal>
+                    </div>
+                </div>
             </div>
 
         )
