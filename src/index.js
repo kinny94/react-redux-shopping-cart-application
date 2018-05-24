@@ -4,11 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import React from 'react';
 import { render } from 'react-dom'; 
 import { Provider } from 'react-redux';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import 'bootstrap';
 
 import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
 import { postBook, updateBook, deleteBook } from './actions/booksActions';
+
+import Menu from './components/menu';
+import Footer from './components/footer';
+import Main from './components/main';
 
 //Step 3 - define the reducers
 
@@ -17,19 +22,15 @@ const store = createStore(reducers, composeWithDevTools(
     applyMiddleware( ),
 ));
 
-import BookList from './components/pages/booksList';
-import Menu from './components/menu';
-import Footer from './components/footer';
-
 render(
     <Provider store={ store }>
-        <div>
-            <Menu />
-            <div className="container">
-                <BookList />
+        <BrowserRouter>
+            <div>
+                <Menu />
+                <Main />
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 )
