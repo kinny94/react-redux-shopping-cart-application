@@ -11,9 +11,8 @@ import reducers from './reducers/index';
 import { addToCart } from './actions/cartActions';
 import { postBook, updateBook, deleteBook } from './actions/booksActions';
 
-import Menu from './components/menu';
-import Footer from './components/footer';
 import Main from './components/main';
+
 
 //Step 3 - define the reducers
 
@@ -26,14 +25,13 @@ render(
     <Provider store={ store }>
         <BrowserRouter>
             <div>
-                <Menu />
                 <Main />
-                <Footer />
             </div>
         </BrowserRouter>
     </Provider>,
     document.getElementById('app')
 )
+
 
 // Step 2 - Create and dispatch the actions
 // store.dispatch( postBook(

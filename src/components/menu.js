@@ -23,7 +23,12 @@ class Menu extends Component{
                             <a className="nav-link" href="/admin">Admin</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/cart">Your cart <span className="badge badge-warning">1</span></a>
+                            <a className="nav-link" href="/cart">Your cart 
+                                { 
+                                    ( this.props.cartItemsNumber > 0 ) ? 
+                                    ( <span className="badge badge-warning">     { this.props.cartItemsNumber }</span> ) : 
+                                    ( '' )
+                                }</a>
                         </li>
                     </ul>
                 </div>
