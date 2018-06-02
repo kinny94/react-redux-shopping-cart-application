@@ -3,9 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, Button } from 'react-bootstrap';
 
-import { deleteCartItem, updateCart } from '../../actions/cartActions';
+import { deleteCartItem, updateCart, getCart } from '../../actions/cartActions';
 
 class Cart extends Component{
+
+    componentDidMount(){
+        this.props.getCart();
+    }
 
     onDelete( _id ){
 
@@ -153,7 +157,8 @@ function mapStateToProps( state ){
 function mapDispatchToProps( dispatch ){
     return bindActionCreators({
             deleteCartItem: deleteCartItem,
-            updateCart: updateCart
+            updateCart: updateCart,
+            getCart: getCart
         }, dispatch )
 }
 
