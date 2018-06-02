@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 //import logger from 'redux-logger';
 import React from 'react';
 import { render } from 'react-dom'; 
@@ -13,12 +14,11 @@ import { postBook, updateBook, deleteBook } from './actions/booksActions';
 
 import Main from './components/main';
 
-
 //Step 3 - define the reducers
 
 // Step 1 - create the store
 const store = createStore(reducers, composeWithDevTools(
-    applyMiddleware( ),
+    applyMiddleware( thunk )
 ));
 
 render(
