@@ -22,12 +22,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 // API's 
 
 var mongoose = require('mongoose');
-mongoose.connect( 'mongodb://localhost:27017/bookshop' );
+mongoose.connect( 'mongodb://localhost:27017/bookshop', () => {
+	console.log("Connected to the database");
+}, err => {
+	console.log( "error ");
+});
 
 var Books = require('./models/books' );
 
 // POST_BOOKS
 app.post( '/books', ( err, books ) => {
+
+	console.log( "Hello ");	
 	var book = req.body;
 
 	Books.create( book, ( err, books ) => {
