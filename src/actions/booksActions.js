@@ -2,8 +2,18 @@
 import axios from 'axios';
 
 export function getBook(){
-    return {
-        type: "GET_BOOK"
+    return function( dispatch ){
+        axios.get( "/api/books" ).then(( response ) => {
+            dispatch({
+                type: "GET_BOOKS",
+                payload: response.data
+            });
+        }).catch(( err ) => {
+            dispatch({
+                type: "GET_BOOKS_REJECTED",
+                payload: err
+            });
+        });
     }
 }
 
@@ -11,7 +21,7 @@ export function getBook(){
 export function postBook( book ){
 
     return function( dispatch ){
-        axios.post( "/books", book ).then(( response ) => {
+        axios.post( "/api/books", book ).then(( response ) => {
             dispatch({
                 type: "POST_BOOK",
                 payload: response.data
@@ -27,16 +37,32 @@ export function postBook( book ){
 
 // Delete a book
 export function deleteBook( bookId ){
-    return {
-        type: "DELETE_BOOK",
-        payload: bookId
-    };
+    return function( dispatch ){
+        axios.delete( "/api/books/" + bookId ).then(( response ) => {
+            dispatch({
+                type: "DELETE_BOOK",
+                payload: bookId
+            });
+        }).catch(( err ) => {
+            dispatch({
+                type: "DELETE_BOOK_REJECTED", payload: err
+            });
+        });
+    }
 }
 
 // update a book
 export function updateBook( book ){
-    return { 
-        type: "UPDATE_BOOK",
-        payload: book
+    return function( disptach ){
+        axios.delete( "/api/books/" + id ).then(( response ) => {
+            dispatch({
+                type: "DELETE_BOOK",
+                payload: id
+            });ç
+        }).catch(( err ) => {
+            dispatch({
+                type: "DELETE_BOOK_REJECTED", payload: err
+            });
+        });
     }
 }
