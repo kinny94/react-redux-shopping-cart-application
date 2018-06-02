@@ -9,7 +9,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+//view engine setup
+app.set('view engine', 'html');
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
@@ -44,9 +45,28 @@ app.post( '/books', ( req, res ) => {
 	}); 
 });
 
+// Get all books
 app.get( '/books', ( req, res ) => {
-    res.send({"name": "Arjun"})
+    Books.find(( err, books ) => {
+        if( err ){
+            throw err;
+        }   
+        res.json( books )
+    })
 });
+
+// Delete books
+app.delete( '/books/:_id', ( req, res ) => {
+    var query = { _id: req.params._id };
+
+    Books.remove( query, ( err, books ) => {
+        if( err ){
+            throw err;
+        } 
+
+        res.json( books );  
+    })
+})
 
 // END API
 
