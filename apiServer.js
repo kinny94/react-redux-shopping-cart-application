@@ -113,6 +113,26 @@ app.delete( '/books/:_id', ( req, res ) => {
     })
 });
 
+app.get( '/images', (req, res ) => {
+    const imgFolder = __dirname + '/public/images/';
+    const fs = require( 'fs' );
+    fs.readdir( imgFolder, ( err, files ) => {
+        if( err ){
+            return console.error( err );
+        }
+
+        const filesArray = [];
+        var i = 1;
+        files.forEach(( file ) => {
+            filesArray.push({
+                name: file
+            });
+            i++
+        });
+
+        res.json( files );
+    })
+})
 app.listen( 3001, () => {
     console.log(" API server is running on port 3001");
 });
