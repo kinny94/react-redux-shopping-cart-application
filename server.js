@@ -55,6 +55,30 @@ app.get( '/books', ( req, res ) => {
     })
 });
 
+// update books - not being used in the cart
+app.put( '/books/:_id' , ( req, res ) => {
+    var book = req.body;
+    var query = req.params._id;
+
+    var update = {
+        '$set': {
+            title: book.title,
+            description: book.description,
+            image: book.image,
+            price: book.price
+        }
+    };
+
+    var options = { new : true };
+    Books.findOneAndUpdate( query, update, options, ( err, books ) => {
+        if( err ){
+            throw err;
+        }
+
+        res.json( books );
+    })
+})
+
 // Delete books
 app.delete( '/books/:_id', ( req, res ) => {
     var query = { _id: req.params._id };
