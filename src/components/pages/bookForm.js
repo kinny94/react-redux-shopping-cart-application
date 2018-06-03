@@ -11,7 +11,7 @@ class BookForm extends Component{
         super();
 
         this.state = {
-            images: [{}],
+            images: [],
             img: ''
         }
     }
@@ -21,6 +21,7 @@ class BookForm extends Component{
             this.setState({
                 images: response.data
             })
+
         }).catch(( err ) => {
             this.setState({
                 images: 'error loading image files from the server', img: ''
@@ -48,6 +49,13 @@ class BookForm extends Component{
         this.props.deleteBook( bookId );
     }
 
+    handleSelect( img ){
+        this.setState({
+            img: '/images/' + img
+        });
+        console.log( "hello ");
+    }
+
     render(){
 
         const bookList = this.props.books.map(( booksArr ) => {
@@ -55,20 +63,33 @@ class BookForm extends Component{
                 <option key={ booksArr._id }>{ booksArr._id }</option>
             )
         });
+
+        const imgList = this.state.images.map(( image ) => {
+            return(
+                <option onClick={ this.handleSelect.bind( this, image )} key={ image.name }>{ image.name }</option>
+            )
+        }, this);
         
         return (
             <div className="row">
-                <div className="col-12">
+                <div className="col-12 col-">
                     <div className="card-body">
                         <form className="form" role="form" autocomplete="off">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select an image to upload..</label>
-                                <select name="delete" id="delete" ref="delete" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="select">select</option>
-                                    { imgList }
-                                </select>
+                            <div className="col-10 float-left">    
+                                <div class="form-group">
+                                    <select name="delete" id="delete" ref="upload" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="select">Select an image to upload..</option>
+                                        { imgList }
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="col-2 float-right">
+                                <button onClick={ this.onDelete } className="btn btn-success btn-md">Upload</button> 
                             </div>
                         </form>
+                        <div className="col-12">
+                            <img className="responsive" src={ this.state.img } />
+                        </div>
                     </div>
                 </div>
                 <div className="col-12">

@@ -55,7 +55,6 @@ var Books = require('./models/books' );
 // POST_BOOKS
 app.post( '/books', ( req, res ) => {
 
-	console.log( "Hello ");	
 	var book = req.body;
 
 	Books.create( book, ( err, books ) => {
@@ -130,7 +129,7 @@ app.get( '/images', (req, res ) => {
             i++
         });
 
-        res.json( files );
+        res.json( filesArray );
     })
 })
 app.listen( 3001, () => {

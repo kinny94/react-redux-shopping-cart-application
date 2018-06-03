@@ -16,7 +16,6 @@ class BookList extends Component{
 
     renderBooks = () => {
         if( this.props.books.length === 0 ){
-            console.log( this.props.books );
             return <p>Getting books...</p>
         }else{
             return this.props.books.map(( book ) => {

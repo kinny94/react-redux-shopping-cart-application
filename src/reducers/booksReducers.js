@@ -12,7 +12,6 @@ export function booksReducers( state = {
 
         case "POST_BOOK":
             let books = state.books.concat( action.payload );
-            console.log( books );
             return { books };
             break;
         
@@ -24,7 +23,6 @@ export function booksReducers( state = {
 
             currentBookToDelete.splice( indexToDelete, 1 );
             books = currentBookToDelete;
-            console.log( books );
             return { books   }
 
         case "UPDATE_BOOK": 
@@ -37,7 +35,6 @@ export function booksReducers( state = {
             }
 
             books = currentBookToUpdate;
-            console.log( books );
             return { books };
     }
 
