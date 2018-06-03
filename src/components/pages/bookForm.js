@@ -3,8 +3,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
 import { postBook, deleteBook } from '../../actions/booksActions';
+import axios from 'axios';
 
 class BookForm extends Component{
+
+    constructor(){
+        super();
+
+        this.state = {
+            images: [{}],
+            img: ''
+        }
+    }
+
+    componentDidMount(){
+        axios.get( '/api/images' ).then(( response ) => {
+            this.setState({
+                images: response.data
+            })
+        }).catch(( err ) => {
+            this.setState({
+                images: 'error loading image files from the server', img: ''
+            });
+        });
+    }
 
     handleSubmit = ( event ) => {
 
@@ -32,11 +54,24 @@ class BookForm extends Component{
             return(
                 <option key={ booksArr._id }>{ booksArr._id }</option>
             )
-        })
+        });
         
         return (
-            <div>
-                <div>
+            <div className="row">
+                <div className="col-12">
+                    <div className="card-body">
+                        <form className="form" role="form" autocomplete="off">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Select an image to upload..</label>
+                                <select name="delete" id="delete" ref="delete" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="select">select</option>
+                                    { imgList }
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div className="col-12">
                     <span className="anchor" id="formContact"></span>
                     <hr className="my-5"/>
                     <div className="card card-outline-secondary">
