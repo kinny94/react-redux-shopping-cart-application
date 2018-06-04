@@ -49,11 +49,13 @@ class BookForm extends Component{
         this.props.deleteBook( bookId );
     }
 
-    handleSelect( img ){
-        this.setState({
-            img: '/images/' + img
-        });
-        console.log( "hello ");
+    handleSelect( event ){
+        //const upload = event.target.elements.upload.value;
+        console.log(  );
+        // this.setState({
+        //     img: '/images/' + img
+        // });
+        // console.log( "hello ");
     }
 
     render(){
@@ -66,29 +68,33 @@ class BookForm extends Component{
 
         const imgList = this.state.images.map(( image ) => {
             return(
-                <option onClick={ this.handleSelect.bind( this, image )} key={ image.name }>{ image.name }</option>
+                <option value={ image.name } key={ image.name }>{ image.name }</option>
             )
         }, this);
         
         return (
             <div className="row">
-                <div className="col-12 col-">
+                <div className="col-12">
                     <div className="card-body">
-                        <form className="form" role="form" autocomplete="off">
-                            <div className="col-10 float-left">    
-                                <div class="form-group">
-                                    <select name="delete" id="delete" ref="upload" class="form-control" id="exampleFormControlSelect1">
-                                        <option value="select">Select an image to upload..</option>
-                                        { imgList }
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="col-2 float-right">
-                                <button onClick={ this.onDelete } className="btn btn-success btn-md">Upload</button> 
-                            </div>
-                        </form>
-                        <div className="col-12">
-                            <img className="responsive" src={ this.state.img } />
+                        <div className="col-10 float-left">
+                            <form onSubmit={ this.handleSelect } className="form" role="form" autocomplete="off">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <select name="upload" id="upload" ref="upload" class="form-control" id="exampleFormControlSelect1">
+                                            <option type="submit" value="select">select a book to upload...</option>
+                                            { imgList }
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div className="col-2 float-right">
+                            <button onClick={ this.handleSelect() } className="btn btn-danger btn-sm">upload</button>
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <div className="card-body">
+                            <img src={ this.state.img } className="responsive" />
                         </div>
                     </div>
                 </div>
