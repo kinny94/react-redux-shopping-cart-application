@@ -12,7 +12,8 @@ class BookForm extends Component{
 
         this.state = {
             images: [],
-            img: ''
+            img: '',
+            selectedValue: ''
         }
     }
 
@@ -49,13 +50,11 @@ class BookForm extends Component{
         this.props.deleteBook( bookId );
     }
 
-    handleSelect( event ){
-        //const upload = event.target.elements.upload.value;
-        console.log(  );
-        // this.setState({
-        //     img: '/images/' + img
-        // });
-        // console.log( "hello ");
+    handleChange( event ){
+        this.setState({
+            selectedValue: event.target.value
+        });
+        console.log( this.state.selectedValue );
     }
 
     render(){
