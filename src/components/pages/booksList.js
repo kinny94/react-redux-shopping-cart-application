@@ -35,9 +35,6 @@ class BookList extends Component{
                     <Cart />
                 </div>
                 <Row style={{ marginTop: '15px'}}>
-                    <div className="col-12 col-sm-6">
-                        <BookForm />
-                    </div>
                     { this.renderBooks() }
                 </Row>
             </Grid>

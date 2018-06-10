@@ -91,7 +91,7 @@ class BookForm extends Component{
                         <button onClick={ this.handleSelect } className="btn btn-danger btn-sm">Upload</button>
                     </div>
                     <div className="card-body">
-                        <img className="responsive" src={ "/images/" + this.state.selectedValue } />
+                        <img className="img-fluid rounded mx-auto d-block" src={ "/images/" + this.state.selectedValue } />
                     </div>
                 </div>
                 <div className="col-12">
