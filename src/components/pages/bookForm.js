@@ -50,14 +50,16 @@ class BookForm extends Component{
         this.props.deleteBook( bookId );
     }
 
-    handleChange( event ){
+    handleChange = ( event ) => {
+
         this.setState({
             selectedValue: event.target.value
         });
-        console.log( this.state.selectedValue );
+        console.log( this.state.selectedValue ); 
+
     }
 
-        render(){
+    render(){
 
         const bookList = this.props.books.map(( booksArr ) => {
             return(
@@ -73,6 +75,25 @@ class BookForm extends Component{
         
         return (
             <div className="row">
+                <div className="col-12">
+                    <div className="card-header">
+                        <h3 className="mb-0">Upload an Image</h3>
+                    </div>
+                    <div className="card-body">
+                        <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
+                            <div class="form-group">
+                                <select onChange={ this.handleChange } value={ this.state.selectedValue } class="form-control" id="exampleFormControlSelect1">
+                                    <option value="select">Select an Image to Upload..</option>
+                                    { imgList }
+                                </select>
+                            </div>
+                        </form>
+                        <button onClick={ this.handleSelect } className="btn btn-danger btn-sm">Upload</button>
+                    </div>
+                    <div className="card-body">
+                        <img className="responsive" src={ "/images/" + this.state.selectedValue } />
+                    </div>
+                </div>
                 <div className="col-12">
                     <span className="anchor" id="formContact"></span>
                     <hr className="my-5"/>
