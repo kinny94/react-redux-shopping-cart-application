@@ -42,10 +42,10 @@ class BookItem extends Component{
 
             <div>
                 <div className="card">
-                    <img className="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif"/>
+                    <img className="card-img-top" src="http://www.kxl.com/wp-content/uploads/2016/08/stack_of_books.jpg"/>
                     <div className="card-block">
                         <figure className="profile">
-                            <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt=""/>
+                            <img src="http://www.kxl.com/wp-content/uploads/2016/08/stack_of_books.jpg" class="profile-avatar" alt=""/>
                         </figure>
                         <h4 className="card-title mt-3">{ this.props.title }</h4>
                         <div className="meta">

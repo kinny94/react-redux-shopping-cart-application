@@ -57,7 +57,7 @@ class BookForm extends Component{
         console.log( this.state.selectedValue );
     }
 
-    render(){
+        render(){
 
         const bookList = this.props.books.map(( booksArr ) => {
             return(
@@ -73,30 +73,6 @@ class BookForm extends Component{
         
         return (
             <div className="row">
-                <div className="col-12">
-                    <div className="card-body">
-                        <div className="col-10 float-left">
-                            <form onSubmit={ this.handleSelect } className="form" role="form" autocomplete="off">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <select name="upload" id="upload" ref="upload" class="form-control" id="exampleFormControlSelect1">
-                                            <option type="submit" value="select">select a book to upload...</option>
-                                            { imgList }
-                                        </select>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div className="col-2 float-right">
-                            <button onClick={ this.handleSelect() } className="btn btn-danger btn-sm">upload</button>
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="card-body">
-                            <img src={ this.state.img } className="responsive" />
-                        </div>
-                    </div>
-                </div>
                 <div className="col-12">
                     <span className="anchor" id="formContact"></span>
                     <hr className="my-5"/>
