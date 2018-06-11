@@ -66,3 +66,10 @@ export function updateBook( book ){
         });
     }
 }
+
+//Reset button
+export function resetButton(){
+    return{
+        type: "RESET_BUTTON"
+    }
+}

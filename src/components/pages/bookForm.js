@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { findDOMNode } from 'react-dom';
-import { postBook, deleteBook } from '../../actions/booksActions';
+import { postBook, deleteBook, getBook, resetButton } from '../../actions/booksActions';
 import axios from 'axios';
 
 class BookForm extends Component{
@@ -12,12 +12,13 @@ class BookForm extends Component{
 
         this.state = {
             images: [],
-            img: '',
             selectedValue: ''
         }
     }
 
     componentDidMount(){
+
+        this.props.getBook();
         axios.get( '/api/images' ).then(( response ) => {
             this.setState({
                 images: response.data
@@ -35,6 +36,7 @@ class BookForm extends Component{
         event.preventDefault();
 
         const book = [{
+            images: this.state.selectedValue,
             title: event.target.elements.title.value,
             description: event.target.elements.description.value,
             price: event.target.elements.price.value
@@ -53,15 +55,27 @@ class BookForm extends Component{
     handleChange = ( event ) => {
 
         this.setState({
-            selectedValue: event.target.value
+            selectedValue: "/images/" + event.target.value
         });
-        console.log( this.state.selectedValue ); 
+    }
 
+    resetForm(){
+
+        // Reset the button 
+
+        this.props.resetButton();
+
+        event.target.elements.title.value = '',
+        event.target.elements.description.value = '',
+        event.target.elements.price.value = '',
+        this.setState({
+            selectedValue: ''
+        });
     }
 
     renderUploadImage = () => {
         if( this.state.selectedValue !== '' ){
-            return <img className="img-fluid rounded mx-auto d-block" src={ "/images/" + this.state.selectedValue } />
+            return <img ref="images" name="images" className="img-fluid rounded mx-auto d-block" src={ this.state.selectedValue } />
         }
     }
     render(){
@@ -113,7 +127,7 @@ class BookForm extends Component{
                                 <h3 className="mb-0">Contact</h3>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={ this.handleSubmit } className="form" role="form" autocomplete="off">
+                                <form onSubmit={ ( !this.props.msg ) ? ( this.handleSubmit ) : ( this.resetForm )  } className="form" role="form" autocomplete="off">
                                     <fieldset>
                                         <div className="label">
                                             <label for="title" className="mb-0">Book Title</label>
@@ -140,7 +154,9 @@ class BookForm extends Component{
                                             </div>
                                         </div>
                                         <div className="label">
-                                            <button type="submit" className="btn btn-secondary btn-lg float-none">Save Book</button>
+                                            <button type="submit" className={ ( !this.props.style ) ? ("btn-secondary btn btn-lg float-none") : ( this.props.style ) } >
+                                                { ( !this.props.msg ) ? ( "Save book" ) : ( this.props.msg )}
+                                            </button>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -172,12 +188,14 @@ class BookForm extends Component{
 
 function mapStateToProps( state ){
     return{
-        books: state.books.books
+        books: state.books.books,
+        msg: state.books.msg,
+        style: state.books.style,
     }
 }
 
 function mapDispatchToProps( dispatch ){
-    return bindActionCreators( { postBook, deleteBook }, dispatch )
+    return bindActionCreators( { postBook, deleteBook, getBook, resetButton }, dispatch )
 }
 
 export default connect( mapStateToProps, mapDispatchToProps )( BookForm );
