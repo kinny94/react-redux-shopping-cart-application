@@ -114,7 +114,7 @@ class BookForm extends Component{
                             <div className="card-body">
                                 <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
                                     <div class="form-group">
-                                        <select onChange={ this.handleChange } value={ this.state.selectedValue } class="form-control" id="exampleFormControlSelect1">
+                                    <span className="danger">{ this.state.errorStar }</span><select onChange={ this.handleChange } value={ this.state.selectedValue } class="form-control" id="exampleFormControlSelect1">
                                             <option value="select">Select an Image to Upload..</option>
                                             { imgList }
                                         </select>
@@ -139,7 +139,7 @@ class BookForm extends Component{
                                 <form onSubmit={ ( !this.props.msg ) ? ( this.handleSubmit ) : ( this.resetForm )  } className="form" role="form" autocomplete="off">
                                     <fieldset>
                                         <div className="label">
-                                            <label for="title" className="mb-0">Book Title</label>
+                                            <label for="title" className="mb-0">Book Title <span className="danger">{ this.state.errorStar }</span></label>
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
@@ -147,7 +147,7 @@ class BookForm extends Component{
                                             </div>
                                         </div>
                                         <div className="label">
-                                            <label for="description" className="mb-0">Description</label>
+                                            <label for="description" className="mb-0">Description <span className="danger">{ this.state.errorStar }</span></label>
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
@@ -155,7 +155,7 @@ class BookForm extends Component{
                                             </div>
                                         </div>
                                         <div className="label">
-                                            <label for="price" className="mb-0">Book Price</label>
+                                            <label for="price" className="mb-0">Book Price <span className="danger">{ this.state.errorStar }</span></label>
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
