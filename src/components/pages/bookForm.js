@@ -12,7 +12,9 @@ class BookForm extends Component{
 
         this.state = {
             images: [],
-            selectedValue: ''
+            selectedValue: '',
+            errorMsg: '',
+            errorStar: ''
         }
     }
 
@@ -36,15 +38,19 @@ class BookForm extends Component{
         event.preventDefault();
 
         if( this.state.selectedValue === '' || event.target.elements.title.value === '' ||  event.target.elements.description.value === '' ||  event.target.elements.price.value === '' ){
-            
-        }
-        const book = [{
-            images: this.state.selectedValue,
-            title: event.target.elements.title.value,
-            description: event.target.elements.description.value,
-            price: event.target.elements.price.value
-        }];
-        this.props.postBook( book );     
+            this.setState({
+                errorMsg: 'All Fields are required',
+                errorStar: "*"
+            });
+        }else{
+            const book = [{
+                images: this.state.selectedValue,
+                title: event.target.elements.title.value,
+                description: event.target.elements.description.value,
+                price: event.target.elements.price.value
+            }];
+            this.props.postBook( book );
+        }     
     }
 
     onDelete = ( event ) => {
@@ -161,6 +167,7 @@ class BookForm extends Component{
                                                 { ( !this.props.msg ) ? ( "Save book" ) : ( this.props.msg )}
                                             </button>
                                         </div>
+                                        <p className="danger">{ this.state.errorMsg }</p>
                                     </fieldset>
                                 </form>
                             </div>
