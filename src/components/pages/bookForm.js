@@ -59,6 +59,11 @@ class BookForm extends Component{
 
     }
 
+    renderUploadImage = () => {
+        if( this.state.selectedValue !== '' ){
+            return <img className="img-fluid rounded mx-auto d-block" src={ "/images/" + this.state.selectedValue } />
+        }
+    }
     render(){
 
         const bookList = this.props.books.map(( booksArr ) => {
@@ -75,81 +80,88 @@ class BookForm extends Component{
         
         return (
             <div className="row">
-                <div className="col-12">
-                    <div className="card-header">
-                        <h3 className="mb-0">Upload an Image</h3>
-                    </div>
-                    <div className="card-body">
-                        <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
-                            <div class="form-group">
-                                <select onChange={ this.handleChange } value={ this.state.selectedValue } class="form-control" id="exampleFormControlSelect1">
-                                    <option value="select">Select an Image to Upload..</option>
-                                    { imgList }
-                                </select>
+                <div className="col-6">
+                    <div className="col-12">
+                        <span className="anchor" id="formContact"></span>
+                        <hr className="my-5"/>
+                        <div className="card card-outline-secondary">
+                            <div className="card-header">
+                                <h3 className="mb-0">Image Upload</h3>
                             </div>
-                        </form>
-                        <button onClick={ this.handleSelect } className="btn btn-danger btn-sm">Upload</button>
-                    </div>
-                    <div className="card-body">
-                        <img className="img-fluid rounded mx-auto d-block" src={ "/images/" + this.state.selectedValue } />
+                            <div className="card-body">
+                                <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <select onChange={ this.handleChange } value={ this.state.selectedValue } class="form-control" id="exampleFormControlSelect1">
+                                            <option value="select">Select an Image to Upload..</option>
+                                            { imgList }
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="card-body">
+                                { this.renderUploadImage() }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="col-12">
-                    <span className="anchor" id="formContact"></span>
-                    <hr className="my-5"/>
-                    <div className="card card-outline-secondary">
-                        <div className="card-header">
-                            <h3 className="mb-0">Contact</h3>
-                        </div>
-                        <div className="card-body">
-                            <form onSubmit={ this.handleSubmit } className="form" role="form" autocomplete="off">
-                                <fieldset>
-                                    <div className="label">
-                                        <label for="title" className="mb-0">Book Title</label>
-                                    </div>
-                                    <div className="row mb-1">
-                                        <div className="col-lg-12">
-                                            <input type="text" ref="title" name="title" id="title" placeholder="Bookname.." className="form-control" required=""/>
+                <div className="col-6">
+                    <div className="col-12">
+                        <span className="anchor" id="formContact"></span>
+                        <hr className="my-5"/>
+                        <div className="card card-outline-secondary">
+                            <div className="card-header">
+                                <h3 className="mb-0">Contact</h3>
+                            </div>
+                            <div className="card-body">
+                                <form onSubmit={ this.handleSubmit } className="form" role="form" autocomplete="off">
+                                    <fieldset>
+                                        <div className="label">
+                                            <label for="title" className="mb-0">Book Title</label>
                                         </div>
-                                    </div>
-                                    <div className="label">
-                                        <label for="description" className="mb-0">Description</label>
-                                    </div>
-                                    <div className="row mb-1">
-                                        <div className="col-lg-12">
-                                            <input type="text" ref="description" name="description" id="description" placeholder="Greatest book.." className="form-control" required=""/>
+                                        <div className="row mb-1">
+                                            <div className="col-lg-12">
+                                                <input type="text" ref="title" name="title" id="title" placeholder="Bookname.." className="form-control" required=""/>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="label">
-                                        <label for="price" className="mb-0">Book Price</label>
-                                    </div>
-                                    <div className="row mb-1">
-                                        <div className="col-lg-12">
-                                            <input type="number" ref="price" name="price" id="price" placeholder="$50" className="form-control" required=""/>
+                                        <div className="label">
+                                            <label for="description" className="mb-0">Description</label>
                                         </div>
-                                    </div>
-                                    <div className="label">
-                                        <button type="submit" className="btn btn-secondary btn-lg float-none">Save Book</button>
-                                    </div>
-                                </fieldset>
-                            </form>
+                                        <div className="row mb-1">
+                                            <div className="col-lg-12">
+                                                <input type="text" ref="description" name="description" id="description" placeholder="Greatest book.." className="form-control" required=""/>
+                                            </div>
+                                        </div>
+                                        <div className="label">
+                                            <label for="price" className="mb-0">Book Price</label>
+                                        </div>
+                                        <div className="row mb-1">
+                                            <div className="col-lg-12">
+                                                <input type="number" ref="price" name="price" id="price" placeholder="$50" className="form-control" required=""/>
+                                            </div>
+                                        </div>
+                                        <div className="label">
+                                            <button type="submit" className="btn btn-secondary btn-lg float-none">Save Book</button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    <div className="bookform card card-outline-secondary">
-                        <div className="card-header">
-                            <h3 className="mb-0">More options</h3>
-                        </div>
-                        <div className="card-body">
-                            <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Select a book to delete..</label>
-                                    <select name="delete" id="delete" ref="delete" class="form-control" id="exampleFormControlSelect1">
-                                        <option value="select">select</option>
-                                        { bookList }
-                                    </select>
-                                </div>
-                            </form>
-                            <button onClick={ this.onDelete } className="btn btn-danger btn-sm">Delete</button>
+                        <div className="bookform card card-outline-secondary">
+                            <div className="card-header">
+                                <h3 className="mb-0">More options</h3>
+                            </div>
+                            <div className="card-body">
+                                <form onSubmit={ this.onDelete } className="form" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Select a book to delete..</label>
+                                        <select name="delete" id="delete" ref="delete" class="form-control" id="exampleFormControlSelect1">
+                                            <option value="select">select</option>
+                                            { bookList }
+                                        </select>
+                                    </div>
+                                </form>
+                                <button onClick={ this.onDelete } className="btn btn-danger btn-sm">Delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
