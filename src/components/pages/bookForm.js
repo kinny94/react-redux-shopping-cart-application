@@ -35,6 +35,9 @@ class BookForm extends Component{
 
         event.preventDefault();
 
+        if( this.state.selectedValue === '' || event.target.elements.title.value === '' ||  event.target.elements.description.value === '' ||  event.target.elements.price.value === '' ){
+            
+        }
         const book = [{
             images: this.state.selectedValue,
             title: event.target.elements.title.value,
@@ -134,7 +137,7 @@ class BookForm extends Component{
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
-                                                <input type="text" ref="title" name="title" id="title" placeholder="Bookname.." className="form-control" required=""/>
+                                                <input required type="text" ref="title" name="title" id="title" placeholder="Bookname.." className="form-control" required=""/>
                                             </div>
                                         </div>
                                         <div className="label">
@@ -142,7 +145,7 @@ class BookForm extends Component{
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
-                                                <input type="text" ref="description" name="description" id="description" placeholder="Greatest book.." className="form-control" required=""/>
+                                                <input required type="text" ref="description" name="description" id="description" placeholder="Greatest book.." className="form-control" required=""/>
                                             </div>
                                         </div>
                                         <div className="label">
@@ -150,7 +153,7 @@ class BookForm extends Component{
                                         </div>
                                         <div className="row mb-1">
                                             <div className="col-lg-12">
-                                                <input type="number" ref="price" name="price" id="price" placeholder="$50" className="form-control" required=""/>
+                                                <input required type="number" ref="price" name="price" id="price" placeholder="$50" className="form-control" required=""/>
                                             </div>
                                         </div>
                                         <div className="label">
